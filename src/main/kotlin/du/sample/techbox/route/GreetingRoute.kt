@@ -5,20 +5,15 @@ import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import org.koin.ktor.ext.Koin
+import org.koin.ktor.ext.get
 
-fun Application.configureRouting() {
-
-    install(Koin)
+fun Application.greeting() {
 
     // Starting point for a Ktor app:
     routing {
-        val greetingHandler = GreetingHandler()
+        val greetingHandler:GreetingHandler = get()
         get("/greeting") {
             call.respondText(greetingHandler.greetings("John"))
-        }
-    }
-    routing {
-        get("/customers") {
         }
     }
 }
