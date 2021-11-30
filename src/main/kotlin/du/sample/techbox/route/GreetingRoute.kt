@@ -4,7 +4,6 @@ import du.sample.techbox.handler.GreetingHandler
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import org.koin.ktor.ext.Koin
 import org.koin.ktor.ext.get
 
 fun Application.greeting() {
@@ -13,7 +12,8 @@ fun Application.greeting() {
     routing {
         val greetingHandler:GreetingHandler = get()
         get("/greeting") {
-            call.respondText(greetingHandler.greetings("John"))
+            val name:String = if(call.request.queryParameters["name"] != null) call.request.queryParameters["name"].toString() else "John"
+            call.respondText(greetingHandler.greetings(name))
         }
     }
 }
