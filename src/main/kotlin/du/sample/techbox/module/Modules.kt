@@ -8,6 +8,8 @@ import org.koin.dsl.module
 val greetingModule = module {
     single { GreetingService() }
     single { GreetingHandler(get()) }
+}
 
+val customerModule = module {
     single { CustomerHandler() }
 }

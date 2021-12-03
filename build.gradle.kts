@@ -2,10 +2,12 @@ val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
 val koin_version: String by project
+val kotlinx_version: String by project
 
 plugins {
     application
     kotlin("jvm") version "1.6.0"
+    kotlin("plugin.serialization") version "1.5.31"
 }
 
 group = "du.sample.techbox"
@@ -24,12 +26,13 @@ dependencies {
     implementation("io.ktor:ktor-gson:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("io.ktor:ktor-gson:$ktor_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinx_version")
 
     implementation("io.insert-koin:koin-core:$koin_version")
     implementation("io.insert-koin:koin-ktor:$koin_version")
     implementation("io.insert-koin:koin-logger-slf4j:$koin_version")
 
-    testImplementation("io.ktor:ktor-server-tests:$ktor_version")
+    testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
     testImplementation("io.insert-koin:koin-test-junit5:$koin_version")
 }

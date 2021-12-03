@@ -1,5 +1,6 @@
 package du.sample.techbox
 
+import du.sample.techbox.module.customerModule
 import du.sample.techbox.module.greetingModule
 import du.sample.techbox.route.customer
 import du.sample.techbox.route.greeting
@@ -10,7 +11,7 @@ import org.koin.core.context.startKoin
 fun main() {
 
     startKoin {
-        modules(listOf(greetingModule))
+        modules(listOf(greetingModule, customerModule))
     }
     embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
         greeting()
