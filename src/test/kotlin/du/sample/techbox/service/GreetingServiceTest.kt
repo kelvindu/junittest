@@ -1,4 +1,4 @@
-package du.sample.techbox.handler
+package du.sample.techbox.service
 
 import du.sample.techbox.module.greetingModule
 import org.junit.After
@@ -10,7 +10,7 @@ import org.koin.test.KoinTest
 import org.koin.test.get
 import kotlin.test.assertEquals
 
-internal class GreetingHandlerTest: KoinTest {
+internal class GreetingServiceTest: KoinTest {
 
     @Before
     fun setup () {
@@ -21,7 +21,7 @@ internal class GreetingHandlerTest: KoinTest {
     @Test
     fun `given existing user when user exist then greet welcome` () {
         //arrange
-        val greetingHandler: GreetingHandler = get()
+        val greetingHandler: GreetingService = get()
         val testName = "john"
 
         //action
