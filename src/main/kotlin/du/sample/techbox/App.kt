@@ -6,9 +6,9 @@ import du.sample.techbox.route.greeting
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import org.koin.core.context.startKoin
-import org.koin.dsl.module
 
 fun main() {
+
     startKoin {
         modules(listOf(greetingModule))
     }

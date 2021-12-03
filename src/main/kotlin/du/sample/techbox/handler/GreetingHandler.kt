@@ -1,18 +1,12 @@
 package du.sample.techbox.handler
 
-class GreetingHandler {
+import du.sample.techbox.service.GreetingService
+import io.ktor.application.*
+import io.ktor.response.*
 
-    val existingCustomers = listOf("john", "laura", "felix")
-
-    fun greetings (name: String): String {
-        val greetings: String
-        if (signin(name)) {
-            greetings = String.format("Welcome back %s!", name)
-        } else {
-            greetings = String.format("Hello %s!", name)
-        }
-        return greetings
+class GreetingHandler(private val greetingService: GreetingService) {
+    val greet: Handler = {
+        val name:String = if(call.request.queryParameters["name"] != null) call.request.queryParameters["name"].toString() else "John"
+        call.respondText(greetingService.greetings(name))
     }
-
-    fun signin (name: String) = existingCustomers.contains(name)
 }
