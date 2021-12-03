@@ -33,14 +33,14 @@ internal class CustomerHandlerTest: KoinTest {
 
     @Test
     fun `given customer ID is 1 then return customer of ID 1`(): Unit = withTestApplication(Application::customer) {
-        //assert
+        //arrange
         val customerID = "1"
 
         //action
         handleRequest(HttpMethod.Get, String.format("/customer/%s", customerID)).apply {
             println(response.content)
             val responseBody = response.content?.let { Json.decodeFromString<Customer>(it) }
-            //assert
+            //assess
             assertEquals(HttpStatusCode.OK, response.status())
             assertEquals(customerID, responseBody?.id)
         }
