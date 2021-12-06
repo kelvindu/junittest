@@ -7,6 +7,7 @@ import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.server.testing.*
 import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.junit.After
 import org.junit.Before
@@ -37,8 +38,15 @@ internal class CustomerHandlerTest: KoinTest {
         val customerID = "1"
 
         //action
-        handleRequest(HttpMethod.Get, String.format("/customer/%s", customerID)).apply {
-            println(response.content)
+        with(handleRequest(HttpMethod.Get, String.format("/customer/%s", customerID)) {
+            val customerStub = Customer(
+                "1",
+                "John Smith",
+                21,
+                "Student")
+            addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+            setBody(Json.encodeToString(customerStub))
+        }) {
             val responseBody = response.content?.let { Json.decodeFromString<Customer>(it) }
             //assess
             assertEquals(HttpStatusCode.OK, response.status())
