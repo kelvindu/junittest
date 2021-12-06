@@ -21,11 +21,11 @@ internal class GreetingServiceTest: KoinTest {
     @Test
     fun `given existing user when user exist then greet welcome` () {
         //arrange
-        val greetingHandler: GreetingService = get()
+        val greetingService: GreetingService = get()
         val testName = "john"
 
         //action
-        val message = greetingHandler.greetings(testName)
+        val message = greetingService.greetings(testName)
 
         //assess
         assertEquals(String.format("Welcome back %s!", testName), message)
