@@ -1,20 +1,16 @@
 package du.sample.techbox.handler
 
 import du.sample.techbox.dto.Customer
+import du.sample.techbox.service.CustomerService
 import io.ktor.application.*
 import io.ktor.response.*
 
-class CustomerHandler {
+class CustomerHandler(customerService: CustomerService) {
 
     val getById: Handler = {
-        val customerID = call.parameters["id"]
-        val customerStub = Customer(
-            "1",
-            "John Smith",
-            21,
-            "Student")
+        val customer = customerService.getCustomerById(call.parameters["id"].toString())
 
-        call.respond(if(customerStub.id == customerID) customerStub else Customer(null, null, null, null))
+        call.respond(customer)
     }
 
     val get: Handler = {
