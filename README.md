@@ -7,7 +7,7 @@ git clone https://github.com/kelvindu/junittest.git
 ```
 
 the inside /junittest build and run the application using:
-# Window
+### Window
 ```
 gradlew build
 ```
@@ -16,7 +16,7 @@ gradlew build
 gradlew run
 ```
 
-# Bash
+### Bash
 ```
 ./gradle build
 ```
@@ -29,11 +29,11 @@ the application should be listening in http://localhost:8080
 
 to run the test simply run
 
-# Window
+### Window
 ```
 gradlew test
 ```
-# Bash
+### Bash
 ```
 ./gradle test
 ```
