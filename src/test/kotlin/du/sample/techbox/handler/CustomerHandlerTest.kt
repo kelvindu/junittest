@@ -38,17 +38,10 @@ internal class CustomerHandlerTest: KoinTest {
         val customerID = "1"
 
         //action
-        with(handleRequest(HttpMethod.Get, String.format("/customer/%s", customerID)) {
-            val customerStub = Customer(
-                "1",
-                "John Smith",
-                21,
-                "Student")
-            addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
-            setBody(Json.encodeToString(customerStub))
-        }) {
+        handleRequest(HttpMethod.Get, String.format("/customer/%s", customerID)).apply {
+            println(response.content)
             val responseBody = response.content?.let { Json.decodeFromString<Customer>(it) }
-            //assess
+            //assert
             assertEquals(HttpStatusCode.OK, response.status())
             assertEquals(customerID, responseBody?.id)
         }
